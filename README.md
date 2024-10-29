@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+Star Wars App [Link](https://andrewmelnykx.github.io/starWarTest/)
+![Screenshot 2024-10-26 185643](https://github.com/user-attachments/assets/d308bf04-d407-4bfb-a806-0ac712b9ef8f)
+![Screenshot 2024-10-26 185622](https://github.com/user-attachments/assets/f0b57635-c115-4aa1-ab1e-41f7715622b9)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a Star Wars character explorer built using React, TypeScript, Redux, and Material-UI (MUI). Users can interact with character data through a modern UI.
 
-Currently, two official plugins are available:
+Features
+React with TypeScript for scalable development.
+Redux Toolkit for efficient state management.
+Material-UI (MUI) for a responsive and modern user interface.
+Vite for fast development and build processes.
+Axios for making API requests.
+React Router for navigating between character lists and details.
+Getting Started
+Prerequisites
+Before you begin, ensure you have the following installed:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Node.js (version 16 or higher) – Download here
+npm (comes with Node.js) or yarn – Download here
+Git – Download here
+1. Clone the Repository
+bash
+Copy code
+git clone https://github.com/YourUsername/star-wars-app.git
+cd star-wars-app
+2. Install Dependencies
+Once the repository is cloned, navigate to the project directory and install the required dependencies:
 
-## Expanding the ESLint configuration
+bash
+Copy code
+# Using npm
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# OR using yarn
+yarn install
+3. Run the Project Locally
+To run the project locally, use the following command:
 
-- Configure the top-level `parserOptions` property like this:
+bash
+Copy code
+npm run dev
+This command starts the development server and opens the application in your default web browser.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Application Structure
+Here’s a brief overview of the application's structure:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+src/
+components/ - Contains reusable components (e.g., CharacterCard, CharacterDetail).
+features/ - Contains Redux slices and logic (e.g., characterSlice.ts).
+pages/ - Contains page components (e.g., Home, CharacterDetails).
+App.tsx - Main application component where routes are defined.
+store/ - Redux store configuration.
