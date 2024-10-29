@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "jest",
     "build": "tsc -b && vite build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

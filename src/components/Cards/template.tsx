@@ -31,7 +31,11 @@ const CardTemplate = ({ character, index }: CardProps) => (
       <h3 className="character-name-header">{character.name}</h3>
     </header>
     <section className="button-link-section">
-      <Link className="card-link" to={`/character/${character.name}`}>
+      <Link
+        className="card-link"
+        to={`/character/${character.name}`}
+        key={character.id}
+      >
         <button className="link-button">EXPLORE</button>
       </Link>
     </section>
