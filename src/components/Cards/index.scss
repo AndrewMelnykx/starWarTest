@@ -1,11 +1,11 @@
+@use "sass:math";
 @import "@variables";
 
 $card-width: 50rem;
-$card-dimension: $card-width / 3;
+$card-dimension: math.div($card-width, 3);
 $card-border-radius: 4px;
 $card-animation-duration: 1rem;
 $card-transition-time: 1s;
-
 .card-element-wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
