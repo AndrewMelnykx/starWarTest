@@ -1,0 +1,270 @@
+@import "@variables";
+
+$card-width: 50rem;
+$card-dimension: $card-width / 3;
+$card-border-radius: 4px;
+$card-animation-duration: 1rem;
+$card-transition-time: 1s;
+
+.card-element-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 25px;
+  row-gap: 25px;
+  margin-top: 0.7rem;
+}
+* {
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+}
+
+body,
+body :not(script):not(style),
+::before {
+  display: grid;
+}
+
+body {
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fit, min(100%, $card-width));
+  place-content: center;
+  min-height: 100vh;
+  background: var(--color-background-card);
+  font: 900 2.25em / 1.25 sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+article {
+  max-width: 250px;
+  --m: calc(0.5 * (var(--n) - 1));
+  --abs: max(calc(var(--i) - var(--m)), calc(var(--m) - var(--i)));
+  --val: calc(var(--abs) * (1 + 0.5 * var(--i)) / var(--n));
+  --dt0: calc(var(--val) * #{$card-transition-time});
+  --dt1: calc((var(--val) + 1) * #{$card-transition-time});
+  --dt2: calc((var(--val) + 1.5) * #{$card-transition-time});
+  --dt3: calc((var(--val) + 2) * #{$card-transition-time});
+  --dt4: calc((var(--val) + 2.5) * #{$card-transition-time});
+  --dt5: calc((var(--val) + 3) * #{$card-transition-time});
+
+  overflow: hidden;
+  padding-bottom: $card-animation-duration;
+  backface-visibility: hidden;
+  transform: perspective(25em);
+  background-image: var(--cards-background-img);
+  background-size: cover;
+  background-position: top left;
+  animation: card $card-transition-time ease-out var(--dt0) backwards,
+    cost $card-transition-time var(--dt4) backwards, imageSlide 1s ease forwards;
+  box-shadow: 0 4px 35px var(--color-shadow-light-card),
+    0 0 30px var(--color-shadow-dark-card);
+  border-radius: 20px;
+}
+
+article:hover {
+  box-shadow: 0 4px 35px var(--color-shadow-light-card),
+    0 0 30px var(--color-shadow-light-card);
+}
+
+@keyframes imageSlide {
+  0% {
+    background-position: top left;
+    opacity: 0;
+  }
+  100% {
+    background-position: center;
+    opacity: 1;
+  }
+}
+
+header {
+  grid-gap: $card-animation-duration;
+  padding: 2 * $card-animation-duration 0.5em $card-animation-duration;
+  transform-origin: 100% 100%;
+  background: linear-gradient(var(--grad));
+  color: var(--color-text-card);
+  counter-reset: cost var(--cost);
+  animation: head $card-transition-time ease-out var(--dt1) backwards;
+
+  &::after {
+    height: $card-border-radius;
+    background: currentcolor;
+    clip-path: inset(0 round $card-border-radius);
+    animation: line $card-transition-time ease-out var(--dt2) backwards;
+    content: "";
+  }
+  &:hover {
+    transition: 0.5s;
+    color: yellow;
+  }
+}
+
+@keyframes head {
+  0% {
+    transform: translate(-100%) skewx(35deg);
+  }
+}
+
+@keyframes line {
+  0% {
+    clip-path: inset(0 50% round $card-border-radius);
+  }
+}
+
+h3 {
+  word-wrap: break-word;
+  &::before,
+  &::after {
+    place-self: center;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    animation: text $card-transition-time ease-out var(--dt5) backwards;
+  }
+
+  &::before {
+    --j: 0;
+    animation-name: text, move;
+    content: attr(data-name);
+  }
+
+  &::after {
+    font-size: 0.9em;
+    font-weight: 100;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate(50%);
+  }
+}
+
+section {
+  margin-bottom: -$card-animation-duration;
+  border-bottom: solid $card-animation-duration transparent;
+  background-color: inherit;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - #{$card-animation-duration}),
+    50% 100%,
+    0 calc(100% - #{$card-animation-duration})
+  );
+}
+
+button {
+  place-content: center;
+  line-height: 3;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+  cursor: pointer;
+  animation: text $card-transition-time ease-out var(--dt2) backwards;
+}
+
+@keyframes text {
+  0% {
+    -webkit-mask-position: calc(var(--j) * 100%);
+    mask-position: calc(var(--j) * 100%);
+  }
+}
+
+.arrow-button {
+  background: transparent;
+  border: none;
+  color: var(--color-text-card);
+  font-size: 2em;
+  cursor: pointer;
+  padding: 0 1em;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--color-hover-white-card);
+  }
+}
+
+.card-link {
+  color: var(--color-hover-white-card);
+  text-decoration: none;
+  &:hover {
+    transition: 0.5s;
+    color: yellow;
+  }
+  font-family: "Fugaz One", sans-serif;
+}
+.link-button {
+  font-size: 1.5rem;
+  background-color: black;
+  width: 170px;
+  height: 80px;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+  position: relative;
+  font-family: "Fugaz One", sans-serif;
+}
+
+.avatar {
+  display: flex;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid currentColor;
+  animation: avatarScaleIn $card-transition-time ease-out var(--dt1) backwards;
+  margin-left: 15%;
+  margin-top: 1rem;
+}
+
+.avatar img.avatar-image {
+  display: flex;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.button-link-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .card-element-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .card-element-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-top: 2%;
+  }
+
+  .avatar img.avatar-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    justify-self: center;
+    margin-right: 10%;
+    margin-top: 3%;
+  }
+  body {
+    font: 900 1.25em / 1.25 sans-serif;
+  }
+}
