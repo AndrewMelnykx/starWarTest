@@ -8,7 +8,7 @@ dotenv.config();
 export default defineConfig({
   plugins: [react()],
   define: { "process.env": process.env },
-  // base: "/starWarsTest/",
+  base: "/starWarsTest/",
   build: { outDir: path.resolve(__dirname, "dist") },
   css: {
     preprocessorOptions: {

@@ -6,11 +6,10 @@
   "homepage": "https://github.com/AndrewMelnykx/starWarTest",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest",
-    "predeploy": "npm run build",
+    "build": "tsc -b && vite build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
